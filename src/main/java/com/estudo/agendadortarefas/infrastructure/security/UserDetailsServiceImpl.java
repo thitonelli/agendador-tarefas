@@ -15,7 +15,7 @@ public class UserDetailsServiceImpl {
 
 
     public UserDetails carregaUsuarioPorEmail(String email, String token) {
-        UsuarioDTO usuarioDTO = usuarioClient.buscaUsuarioPorEmail(token, email);
+        UsuarioDTO usuarioDTO = usuarioClient.buscaUsuarioPorEmail("Bearer " + token, email);
         return org.springframework.security.core.userdetails.User
                 .withUsername(usuarioDTO.getEmail())
                 .password(usuarioDTO.getSenha())
