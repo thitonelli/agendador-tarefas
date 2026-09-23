@@ -34,8 +34,7 @@ public class TarefasService {
     }
 
     public List<TarefasDTO> listarTarefasPorPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim) {
-        List<TarefasEntity> tarefasEntities = tarefasRepository.findByDataEventoBetween(dataInicio, dataFim);
-        return tarefaConverter.paraListaTarefasDTO(tarefasRepository.findByDataEventoBetween(dataInicio, dataFim));
+        return tarefaConverter.paraListaTarefasDTO(tarefasRepository.findByDataEventoBetweenAndStatusNotificacaoEnum(dataInicio, dataFim, StatusNotificacaoEnum.PENDENTE));
     }
 
     public List<TarefasDTO> listarTarefasPorUsuario(String token) {
